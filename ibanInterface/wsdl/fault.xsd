@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:tns="http://schemas.org.prolector/powerservice/fault"
-	targetNamespace="http://schemas.org.prolector/powerservice/fault"
+	xmlns:tns="http://schemas.org/ibanservice/fault"
+	targetNamespace="http://schemas.org/ibanservice/fault"
 	elementFormDefault="qualified">
 	<element name="fault">
 		<complexType>

@@ -6,39 +6,45 @@
 	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 	xmlns:req="http://schemas.org/ibanservice/ibanrequest"
-	xmlns:rsp="http://schemas.org/ibanservice/response"
+	xmlns:rsp="http://schemas.org/ibanservice/ibanresponse"
 	xmlns:flt="http://schemas.org/ibanservice/fault"
-	xmlns:srv="http://schemas.org/ibanservice"
+	xmlns:srv="http://schemas.org/ibanService"
 	targetNamespace="http://schemas.org/ibanService">
+	
 	<wsdl:types>
 		<xsd:schema>
-			<xsd:import namespace="http://schemas.org.prolector/powerservice/request"
-				schemaLocation="request.xsd"/>
-			<xsd:import namespace="http://schemas.org.prolector/powerservice/response"
-				schemaLocation="response.xsd"/>
-			<xsd:import namespace="http://schemas.org.prolector/powerservice/fault"
+			<xsd:import namespace="http://schemas.org/ibanservice/ibanrequest"
+				schemaLocation="ibanrequest.xsd"/>
+			<xsd:import namespace="http://schemas.org/ibanservice/ibanresponse"
+				schemaLocation="ibanresponse.xsd"/>
+			<xsd:import namespace="http://schemas.org/ibanservice/fault"
 				schemaLocation="fault.xsd"/>
 		</xsd:schema>
 	</wsdl:types>
-	<wsdl:message name="request">
-		<wsdl:part name="request" element="req:request"/>
+	
+	<wsdl:message name="ibanrequest">
+		<wsdl:part name="ibanrequest" element="req:ibanrequest"/>
 	</wsdl:message>
-	<wsdl:message name="response">
-		<wsdl:part name="response" element="rsp:response"/>
+	
+	<wsdl:message name="ibanresponse">
+		<wsdl:part name="ibanresponse" element="rsp:ibanresponse"/>
 	</wsdl:message>
+	
 	<wsdl:message name="fault">
 		<wsdl:part name="fault" element="flt:fault"/>
 	</wsdl:message>
-	<wsdl:portType name="WS-Interface">
-		<wsdl:operation name="calculatePower">
-			<wsdl:input message="srv:request"/>
-			<wsdl:output message="srv:response"/>
+	
+	<wsdl:portType name="ibanServiceInterface">
+		<wsdl:operation name="toIban">
+			<wsdl:input message="srv:ibanrequest"/>
+			<wsdl:output message="srv:ibanresponse"/>
 			<wsdl:fault name="fault" message="srv:fault"/>
 		</wsdl:operation>
 	</wsdl:portType>
-	<wsdl:binding name="WS-Binding" type="srv:WS-Interface">
+	
+	<wsdl:binding name="ibanServiceBinding" type="srv:ibanServiceInterface">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-		<wsdl:operation name="calculatePower">
+		<wsdl:operation name="toIban">
 			<soap:operation soapAction="" style="document"/>
 			<wsdl:input>
 				<soap:body use="literal"/>
@@ -51,9 +57,9 @@
 			</wsdl:fault>
 		</wsdl:operation>
 	</wsdl:binding>
-	<wsdl:service name="PowerService">
-		<wsdl:port name="WS-Port" binding="srv:WS-Binding">
-			<soap:address location="http://localhost:8080/ws-producer/ws-producer"/>
+	<wsdl:service name="ibanService">
+		<wsdl:port name="WS-Port" binding="srv:ibanServiceBinding">
+			<soap:address location="http://localhost:8080/ibanService/ibanService"/>
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>
