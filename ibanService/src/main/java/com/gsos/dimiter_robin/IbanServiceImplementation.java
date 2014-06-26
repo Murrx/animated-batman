@@ -1,13 +1,21 @@
 package com.gsos.dimiter_robin;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-    }
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;
+ 
+public class IbanServiceImplementation 
+{	
+	@WebService(endpointInterface = "/*Stuff here!*/")
+	@SOAPBinding(style = SOAPBinding.Style.RPC)
+	public class HelloWebService {
+	    @WebMethod(operationName = "sayHello")
+	    public String sayHello(@WebParam(name="guestname") String guestname){
+	        if(guestname==null){
+	            return "Hello";
+	        }
+	        return "Hello "+ guestname;
+	    }
+	}
 }
