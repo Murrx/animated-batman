@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:ib="http://schemas.org/ibanservice/ibanresponse"
+	elementFormDefault="qualified">
+
+	<!-- Kandidaat root element -->
+	<element name="ibanresponse">
+		<!-- anoniem type -->
+		<complexType>
+			<sequence>
+				<element name="iban" type="ib:iban"/>
+			</sequence>
+		</complexType>
+	</element>
+
+	<!-- Altijd EXACT 4 letters -->
+	<element name="iban">
+  		<simpleType>
+			<restriction base="string">
+      			<maxLength value="32"/>
+      		</restriction>
+		</simpleType>
+	</element>
+
+</schema>

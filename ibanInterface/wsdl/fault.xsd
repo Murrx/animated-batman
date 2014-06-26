@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://schemas.org.prolector/powerservice/fault"
+	targetNamespace="http://schemas.org.prolector/powerservice/fault"
+	elementFormDefault="qualified">
+	<element name="fault">
+		<complexType>
+			<annotation>
+					<documentation>message is niet voor de gebruiker, kan ook null zijn</documentation>
+				</annotation>
+			<sequence>
+				<element name="errorCode" type="short" nillable="false"/>
+
+				<element name="message" type="string" minOccurs="0" maxOccurs="1" />
+			</sequence>
+		</complexType>
+	</element> 
+</schema>

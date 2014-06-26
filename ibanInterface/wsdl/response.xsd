@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://schemas.org.prolector/powerservice/response"
+	targetNamespace="http://schemas.org.prolector/powerservice/response"
+	elementFormDefault="qualified">
+	<element name="response">
+		<complexType>
+			<sequence>
+				<element name="result" type="long"/>
+			</sequence>
+		</complexType>
+	</element>
+</schema>
