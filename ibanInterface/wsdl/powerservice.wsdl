@@ -5,19 +5,19 @@
 	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
 	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:req="http://schemas.org/ibanservice/ibanrequest"
-	xmlns:rsp="http://schemas.org/ibanservice/ibanresponse"
-	xmlns:flt="http://schemas.org/ibanservice/fault"
-	xmlns:srv="http://schemas.org/ibanService"
-	targetNamespace="http://schemas.org/ibanService">
+	xmlns:req="http://gsos.com/dimiter_robin/ibanrequest"
+	xmlns:rsp="http://gsos.com/dimiter_robin/ibanresponse"
+	xmlns:flt="http://gsos.com/dimiter_robin/fault"
+	xmlns:srv="http://gsos.com/dimiter_robin"
+	targetNamespace="http://gsos.com/dimiter_robin">
 	
 	<wsdl:types>
 		<xsd:schema>
-			<xsd:import namespace="http://schemas.org/ibanservice/ibanrequest"
+			<xsd:import namespace="http://gsos.com/dimiter_robin/ibanrequest"
 				schemaLocation="ibanrequest.xsd"/>
-			<xsd:import namespace="http://schemas.org/ibanservice/ibanresponse"
+			<xsd:import namespace="http://gsos.com/dimiter_robin/ibanresponse"
 				schemaLocation="ibanresponse.xsd"/>
-			<xsd:import namespace="http://schemas.org/ibanservice/fault"
+			<xsd:import namespace="http://gsos.com/dimiter_robin/fault"
 				schemaLocation="fault.xsd"/>
 		</xsd:schema>
 	</wsdl:types>

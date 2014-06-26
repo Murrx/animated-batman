@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:tns="http://schemas.org/ibanservice/fault"
-	targetNamespace="http://schemas.org/ibanservice/fault"
+	xmlns:tns="http://gsos.com/dimiter_robin/fault"
+	targetNamespace="http://gsos.com/dimiter_robin/fault"
 	elementFormDefault="qualified">
 	<element name="fault">
 		<complexType>

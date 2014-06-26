@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema 
 	xmlns="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://schemas.org/ibanservice/ibanrequest"
-	xmlns:tns="http://schemas.org/ibanservice/ibanrequest"
+	targetNamespace="http://gsos.com/dimiter_robin/ibanrequest"
+	xmlns:tns="http://gsos.com/dimiter_robin/ibanrequest"
 	elementFormDefault="qualified"
 >
 	

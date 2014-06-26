@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:ib="http://schemas.org/ibanservice/ibanresponse"
-	targetNamespace="http://schemas.org/ibanservice/ibanresponse"
+	xmlns:tns="http://gsos.com/dimiter_robin/ibanresponse"
+	targetNamespace="http://gsos.com/dimiter_robin/ibanresponse"
 	elementFormDefault="qualified">
 	
-	<element name="ibanresponse" type="ib:iban"/>
+	<element name="ibanresponse" type="tns:iban"/>
 
 	<!-- Altijd EXACT 4 letters -->
 	<simpleType name="iban">
