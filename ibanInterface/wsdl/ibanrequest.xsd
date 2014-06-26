@@ -14,19 +14,91 @@
 				<element name="rekeningnummer" type="tns:rekeningnummer"/>
 			</sequence>
 	</complexType>
-
-	<!-- Altijd EXACT 4 letters -->
-  	<simpleType name="bankcode">
-		 <restriction base="string">
-	     	<pattern value="[A-Z]{4}" />
-	    </restriction>
+	
+	<!-- Bevat alle toegestande bankcodes --> 
+    <simpleType name="bankcode">
+		<restriction base="string">
+		    <enumeration value="ABNA"/>
+		    <enumeration value="FTSB"/>
+		    <enumeration value="AEGO"/>
+		    <enumeration value="ANAA"/>
+		    <enumeration value="ANDL"/>
+		    <enumeration value="ARBN"/>
+		    <enumeration value="ARSN"/>
+		    <enumeration value="ARTE"/>
+		    <enumeration value="ASNB"/>
+		    <enumeration value="ASRB"/>
+		    <enumeration value="ATBA"/>
+		    <enumeration value="BBRU"/>
+		    <enumeration value="BCDM"/>
+		    <enumeration value="BCIT"/>
+		    <enumeration value="BICK"/>
+		    <enumeration value="BKCH"/>
+		    <enumeration value="BKMG"/>
+		    <enumeration value="BLGW"/>
+		    <enumeration value="BMEU"/>
+		    <enumeration value="BNGH"/>
+		    <enumeration value="BNPA"/>
+		    <enumeration value="BOFA"/>
+		    <enumeration value="BOFS"/>
+		    <enumeration value="BOTK"/>
+		    <enumeration value="CHAS"/>
+		    <enumeration value="CITC"/>
+		    <enumeration value="CITI"/>
+		    <enumeration value="COBA"/>
+		    <enumeration value="DEUT"/>
+		    <enumeration value="DHBN"/>
+		    <enumeration value="DLBK"/>
+		    <enumeration value="DNIB"/>
+		    <enumeration value="FBHL"/>
+		    <enumeration value="FLOR"/>
+		    <enumeration value="FRBK"/>
+		    <enumeration value="FRGH"/>
+		    <enumeration value="FVLB"/>
+		    <enumeration value="GILL"/>
+		    <enumeration value="HAND"/>
+		    <enumeration value="HHBA"/>
+		    <enumeration value="HSBC"/>
+		    <enumeration value="ICBK"/>
+		    <enumeration value="INGB"/>
+		    <enumeration value="INSI"/>
+		    <enumeration value="ISBK"/>
+		    <enumeration value="KABA"/>
+		    <enumeration value="KASA"/>
+		    <enumeration value="KNAB"/>
+		    <enumeration value="KOEX"/>
+		    <enumeration value="KRED"/>
+		    <enumeration value="LOCY"/>
+		    <enumeration value="LOYD"/>
+		    <enumeration value="LPLN"/>
+		    <enumeration value="MHCB"/>
+		    <enumeration value="NNBA"/>
+		    <enumeration value="NWAB"/>
+		    <enumeration value="OVBN"/>
+		    <enumeration value="RABO"/>
+		    <enumeration value="RBOS"/>
+		    <enumeration value="RBRB"/>
+		    <enumeration value="SNSB"/>
+		    <enumeration value="SOGE"/>
+		    <enumeration value="STAL"/>
+		    <enumeration value="TEBU"/>
+		    <enumeration value="TRIO"/>
+		    <enumeration value="UBSW"/>
+		    <enumeration value="UGBI"/>
+		    <enumeration value="VOWA"/>
+		    <enumeration value="ZWLB"/> 
+		</restriction>
 	</simpleType>
 	
-	<!-- !!!! Regex verbeteren, grootste optie moet worden gematched   -->
-	<!--  werkt nu alleen met 9 cijferige rekeningnummers die niet met 00 beginnen. -->
+	<!-- 
+		Een rekeningnummer mag zijn:
+		 - 1 tot en met 7 cijfers, niet beginnend met 0
+		 - 9 cijfers, niet beginnend met 00
+		 ^(...)$ zorgt dat de hele string wordt gematched, en niet alleen een gedeelte er van
+	-->
 	<simpleType name="rekeningnummer">
 		<restriction base="integer">
-			<pattern value="[1-9][1-9][0-9]{7}" />
+			<pattern value="^([1-9][1-9][0-9]{7}|[1-9][0-9]{0,6})$" />
 		</restriction>
 	</simpleType>
 </schema>

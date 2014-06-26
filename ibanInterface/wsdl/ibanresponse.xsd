@@ -6,10 +6,20 @@
 	
 	<element name="ibanresponse" type="tns:iban"/>
 
-	<!-- Altijd EXACT 4 letters -->
+	<!--
+		Een Nederlands IBAN-nummer van een betaalrekening heeft altijd 18 karakters, waarvan:
+		- De eerste twee altijd "NL" zijn
+		- Daarna een controlegetal van 2 cijfers (met voorloopnul) volgt
+		- Daarna een 4-(hoofd)letterige bankcode
+		- Daarna 1x voorloop 0
+		- Daarna:
+			- 00 + Rekeningnummer van 7 cijfers of minder (aangevuld met voorloopnullen)
+		of:	- Rekeningnummer van 9 cijfers dat niet met 00 begint
+	-->
 	<simpleType name="iban">
 		<restriction base="string">
-			<maxLength value="32"/>
+			<length value="18"/>
+			<pattern value="^NL[0-9]{2}[A-Z]{4}0(00[0-9]{6}[1-9]|[1-9]{2}[0-9]{7})$" />
 		</restriction>
 	</simpleType>
 
