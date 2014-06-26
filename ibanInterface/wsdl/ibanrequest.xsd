@@ -1,37 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema"
-	xmlns:tns="http://schemas.org/ibanservice/ibanrequest"
+<schema 
+	xmlns="http://www.w3.org/2001/XMLSchema"
 	targetNamespace="http://schemas.org/ibanservice/ibanrequest"
-	elementFormDefault="qualified">
-
-	<!-- Kandidaat root element -->
-	<element name="ibanrequest">
-		<!-- anoniem type -->
-		<complexType>
+	xmlns:tns="http://schemas.org/ibanservice/ibanrequest"
+	elementFormDefault="qualified"
+>
+	
+	<element name="ibanrequest" type ="tns:ibanrequest"/>
+	
+	<complexType name="ibanrequest">
 			<sequence>
-				<element name="bankcode" type="bankcode"/>
-				<element name="rekeningnummer" type="rekeningnummer"/>
+				<element name="bankcode" type="tns:bankcode"/>
+				<element name="rekeningnummer" type="tns:rekeningnummer"/>
 			</sequence>
-		</complexType>
-	</element>
+	</complexType>
 
 	<!-- Altijd EXACT 4 letters -->
-	<element name="bankcode">
-  		<simpleType>
-			 <restriction base="string">
-		     	<pattern value="[A-Z]{4}" />
-		    </restriction>
-		</simpleType>
-	</element>
+  	<simpleType name="bankcode">
+		 <restriction base="string">
+	     	<pattern value="[A-Z]{4}" />
+	    </restriction>
+	</simpleType>
 	
 	<!-- !!!! Regex verbeteren, grootste optie moet worden gematched   -->
 	<!--  werkt nu alleen met 9 cijferige rekeningnummers die niet met 00 beginnen. -->
-	<element name="rekeningnummer">
-  		<simpleType>
-			 <restriction base="integer">
-		     	<pattern value="[1-9][1-9][0-9]{7}" />
-		    </restriction>
-		</simpleType>
-	</element>
-	
+	<simpleType name="rekeningnummer">
+		<restriction base="integer">
+			<pattern value="[1-9][1-9][0-9]{7}" />
+		</restriction>
+	</simpleType>
 </schema>
