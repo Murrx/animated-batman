@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema 
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://gsos.com/dimiter_robin/validationrequest"
+	xmlns:tns="http://gsos.com/dimiter_robin/validationrequest"
+	elementFormDefault="qualified"
+>
+	
+	<element name="validationrequest" type ="tns:validationrequest"/>
+	
+	<complexType name="validationrequest">
+			<sequence>
+				<element name="iban" type="tns:iban"/>
+			</sequence>
+	</complexType>
+	
+	<simpleType name="iban">
+		<restriction base="string">
+			<length value="18"/>
+			<pattern value="^NL[0-9]{2}[A-Z]{4}0(00[0-9]{6}[1-9]|[1-9]{2}[0-9]{7})$" />
+		</restriction>
+	</simpleType>
+</schema>

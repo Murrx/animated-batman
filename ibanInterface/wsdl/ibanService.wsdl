@@ -9,6 +9,7 @@
 	xmlns:rsp="http://gsos.com/dimiter_robin/ibanresponse"
 	xmlns:flt="http://gsos.com/dimiter_robin/fault"
 	xmlns:srv="http://gsos.com/dimiter_robin"
+	xmlns:val="http://gsos.com/dimiter_robin/validationrequest"
 	targetNamespace="http://gsos.com/dimiter_robin">
 	
 	<wsdl:types>
@@ -34,16 +35,31 @@
 		<wsdl:part name="fault" element="flt:fault"/>
 	</wsdl:message>
 	
+	<wsdl:message name="validationresponse">
+		<wsdl:part name="validationresponse" element="xsd:boolean"/>
+	</wsdl:message>
+	
+	<wsdl:message name="validationrequest">
+		<wsdl:part name="validationrequest" element="flt:fault"/>
+	</wsdl:message>	
+	
 	<wsdl:portType name="ibanServiceInterface">
 		<wsdl:operation name="toIban">
 			<wsdl:input message="srv:ibanrequest"/>
 			<wsdl:output message="srv:ibanresponse"/>
 			<wsdl:fault name="fault" message="srv:fault"/>
 		</wsdl:operation>
+		
+		<wsdl:operation name="validateIban">
+			<wsdl:input message="srv:validationrequest"/>
+			<wsdl:output message="srv:validationresponse"/>
+			<wsdl:fault name="fault" message="srv:fault"/>
+		</wsdl:operation>
 	</wsdl:portType>
 	
 	<wsdl:binding name="ibanServiceBinding" type="srv:ibanServiceInterface">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		
 		<wsdl:operation name="toIban">
 			<soap:operation soapAction="" style="document"/>
 			<wsdl:input>
@@ -56,6 +72,20 @@
 				<soap:fault name="fault" use="literal"/>
 			</wsdl:fault>
 		</wsdl:operation>
+		
+		<wsdl:operation name="validateIban">
+			<soap:operation soapAction="" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<soap:fault name="fault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		
 	</wsdl:binding>
 	<wsdl:service name="ibanService">
 		<wsdl:port name="WS-Port" binding="srv:ibanServiceBinding">
