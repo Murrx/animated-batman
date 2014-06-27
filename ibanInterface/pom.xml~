@@ -8,11 +8,6 @@
 	<name>ibanInterface</name>
 	<url>http://maven.apache.org</url>
 
-	<parent>
-		<groupId>com.gsos.dimiter_robin</groupId>
-		<artifactId>serviceParent</artifactId>
-		<version>1.0</version>
-	</parent>
 
 	<dependencies>
 

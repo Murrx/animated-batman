@@ -7,7 +7,7 @@ import javax.jws.soap.SOAPBinding;
  
 public class IbanServiceImplementation 
 {	
-	@WebService(endpointInterface = "/*Stuff here!*/")
+	@WebService(endpointInterface = "com.gsos.dimiter_robin.ibanInterface")
 	@SOAPBinding(style = SOAPBinding.Style.RPC)
 	public class HelloWebService {
 	    @WebMethod(operationName = "sayHello")
