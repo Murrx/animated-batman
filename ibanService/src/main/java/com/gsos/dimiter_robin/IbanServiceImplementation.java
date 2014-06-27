@@ -1,5 +1,7 @@
 package com.gsos.dimiter_robin;
 
+import java.math.BigInteger;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -17,20 +19,29 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 	@Override
 	public IbanResponse toIban(@WebParam(name = "ibanrequest") Ibanrequest request) {
 		String bankcode = request.getBankcode().value();
-		int rekeningnummer = request.getRekeningnummer().intValue();
+		BigInteger rekeningnummer = request.getRekeningnummer();
 		System.out.println("New request with bankcode "+bankcode+" and number "+rekeningnummer);
 		
-		String partialCode = valueFromLetters(bankcode) + Integer.toString(rekeningnummer);
+		String partialCode = valueFromLetters(bankcode) + addZeroes(rekeningnummer) + valueFromLetters("NL");
 		
 		IbanResponse response = new IbanResponse();
 		response.setIban("NL48INGB008829939");
 		return response;
 	}
+	
 	@WebMethod(operationName = "validateIban")
 	@Override
 	public ValidationResponse validateIban(Fault arg0) throws Fault_Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private String addZeroes (BigInteger nummer) {
+		String stringNummer = nummer.toString();
+		while (stringNummer.length() < 10) {
+			stringNummer = "0" + stringNummer; 
+		}
+		return new String();
 	}
 	
 	private String valueFromLetters (String letters) {
