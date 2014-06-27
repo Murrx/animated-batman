@@ -43,6 +43,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link IbanResponse }
+     * 
+     */
+    public IbanResponse createIbanResponse() {
+        return new IbanResponse();
+    }
+
+    /**
      * Create an instance of {@link Fault }
      * 
      */
@@ -60,12 +68,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link IbanResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://gsos.com/dimiter_robin/ibanresponse", name = "ibanresponse")
-    public JAXBElement<String> createIbanresponse(String value) {
-        return new JAXBElement<String>(_Ibanresponse_QNAME, String.class, null, value);
+    public JAXBElement<IbanResponse> createIbanresponse(IbanResponse value) {
+        return new JAXBElement<IbanResponse>(_Ibanresponse_QNAME, IbanResponse.class, null, value);
     }
 
 }

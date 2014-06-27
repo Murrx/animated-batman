@@ -27,12 +27,12 @@ public interface IbanServiceInterface {
      * 
      * @param ibanrequest
      * @return
-     *     returns java.lang.String
+     *     returns com.gsos.dimiter_robin.ibanInterface.IbanResponse
      * @throws Fault_Exception
      */
     @WebMethod
     @WebResult(name = "ibanresponse", targetNamespace = "http://gsos.com/dimiter_robin/ibanresponse", partName = "ibanresponse")
-    public String toIban(
+    public IbanResponse toIban(
         @WebParam(name = "ibanrequest", targetNamespace = "http://gsos.com/dimiter_robin/ibanrequest", partName = "ibanrequest")
         Ibanrequest ibanrequest)
         throws Fault_Exception

@@ -5,4 +5,5 @@ com/gsos/dimiter_robin/ibanInterface/ObjectFactory.class
 com/gsos/dimiter_robin/ibanInterface/Ibanrequest.class
 com/gsos/dimiter_robin/ibanInterface/IbanService.class
 com/gsos/dimiter_robin/ibanInterface/IbanServiceInterface.class
+com/gsos/dimiter_robin/ibanInterface/IbanResponse.class
 com/gsos/dimiter_robin/ibanInterface/Bankcode.class

@@ -3,19 +3,19 @@ package com.gsos.dimiter_robin;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
-import javax.jws.soap.SOAPBinding;
- 
-public class IbanServiceImplementation 
-{	
-	@WebService(endpointInterface = "com.gsos.dimiter_robin.ibanInterface")
-	@SOAPBinding(style = SOAPBinding.Style.RPC)
-	public class HelloWebService {
-	    @WebMethod(operationName = "sayHello")
-	    public String sayHello(@WebParam(name="guestname") String guestname){
-	        if(guestname==null){
-	            return "Hello";
-	        }
-	        return "Hello "+ guestname;
-	    }
+
+import com.gsos.dimiter_robin.ibanInterface.IbanResponse;
+import com.gsos.dimiter_robin.ibanInterface.IbanServiceInterface;
+import com.gsos.dimiter_robin.ibanInterface.Ibanrequest;
+
+@WebService(endpointInterface = "com.gsos.dimiter_robin.ibanInterface.IbanServiceInterface")
+public class IbanServiceImplementation implements IbanServiceInterface {
+	@WebMethod(operationName = "toIban")
+	@Override
+	public IbanResponse toIban(@WebParam(name = "ibanrequest") Ibanrequest request) {
+		IbanResponse response = new IbanResponse();
+		response.setIban("NL48INGB008829939");
+		return response;
 	}
+
 }

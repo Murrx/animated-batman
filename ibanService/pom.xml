@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.gsos.dimiter_robin</groupId>
 	<artifactId>ibanService</artifactId>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<version>1.0</version>
 	<name>ibanService</name>
 	<url>http://maven.apache.org</url>
@@ -15,6 +15,11 @@
 	</parent>
 	
 	<dependencies>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -36,9 +41,37 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>com.gsos.dimiter_robin</groudId>
+			<groupId>com.gsos.dimiter_robin</groupId>
 			<artifactId>ibanInterface</artifactId>
+			<version>1.0</version>
 		</dependency>
 		
 	</dependencies>
+	<build>
+	<finalName>ibanService</finalName>
+		<plugins>
+		
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			
+			
+			<!--plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<configuration>
+					</configuration>	
+			</plugin-->
+		
+		</plugins>
+		
+	<!--plugins>
+		
+	</plugins-->	
+	</build>
 </project>
