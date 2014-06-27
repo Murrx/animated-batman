@@ -23,6 +23,8 @@
 				schemaLocation="fault.xsd"/>
 			<xsd:import namespace="http://gsos.com/dimiter_robin/validationresponse"
 				schemaLocation="validationresponse.xsd"/>
+			<xsd:import namespace="http://gsos.com/dimiter_robin/validationrequest"
+				schemaLocation="validationrequest.xsd"/>
 		</xsd:schema>
 	</wsdl:types>
 	
@@ -43,10 +45,11 @@
 	</wsdl:message>
 	
 	<wsdl:message name="validationrequest">
-		<wsdl:part name="validationrequest" element="flt:fault"/>
+		<wsdl:part name="validationrequest" element="val:validationrequest"/>
 	</wsdl:message>	
 	
 	<wsdl:portType name="ibanServiceInterface">
+		
 		<wsdl:operation name="toIban">
 			<wsdl:input message="srv:ibanrequest"/>
 			<wsdl:output message="srv:ibanresponse"/>
@@ -58,6 +61,7 @@
 			<wsdl:output message="srv:validationresponse"/>
 			<wsdl:fault name="fault" message="srv:fault"/>
 		</wsdl:operation>
+		
 	</wsdl:portType>
 	
 	<wsdl:binding name="ibanServiceBinding" type="srv:ibanServiceInterface">

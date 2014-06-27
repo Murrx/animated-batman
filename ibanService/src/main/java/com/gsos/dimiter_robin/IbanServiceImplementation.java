@@ -12,6 +12,7 @@ import com.gsos.dimiter_robin.ibanInterface.IbanResponse;
 import com.gsos.dimiter_robin.ibanInterface.IbanServiceInterface;
 import com.gsos.dimiter_robin.ibanInterface.Ibanrequest;
 import com.gsos.dimiter_robin.ibanInterface.ValidationResponse;
+import com.gsos.dimiter_robin.ibanInterface.Validationrequest;
 
 @WebService(endpointInterface = "com.gsos.dimiter_robin.ibanInterface.IbanServiceInterface")
 public class IbanServiceImplementation implements IbanServiceInterface {
@@ -28,6 +29,7 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 		response.setIban("NL48INGB008829939");
 		return response;
 	}
+<<<<<<< Updated upstream
 	
 	@WebMethod(operationName = "validateIban")
 	@Override
@@ -35,6 +37,8 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 		// TODO Auto-generated method stub
 		return null;
 	}
+=======
+>>>>>>> Stashed changes
 	
 	private String addZeroes (BigInteger nummer) {
 		String stringNummer = nummer.toString();
@@ -51,5 +55,14 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 		}
 		return value;
 		
+	}
+
+	@WebMethod(operationName = "validateIban")
+	@Override
+	public ValidationResponse validateIban(@WebParam(name = "validationrequest") Validationrequest request)
+			throws Fault_Exception {
+		ValidationResponse response = new ValidationResponse();
+		response.setResult(true);
+		return response;
 	}
 }
