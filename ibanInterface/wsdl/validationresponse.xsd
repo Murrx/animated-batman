@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema 
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://gsos.com/dimiter_robin/validationresponse"
+	xmlns:tns="http://gsos.com/dimiter_robin/validationresponse"
+	elementFormDefault="qualified"
+>
+	
+	<element name="validationresponse" type ="tns:validationResponse"/>
+	
+	<complexType name="validationResponse">
+		<sequence>
+			<element name="result" type="boolean"/>
+		</sequence>
+	</complexType>
+</schema>

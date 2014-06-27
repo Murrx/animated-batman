@@ -10,6 +10,7 @@
 	xmlns:flt="http://gsos.com/dimiter_robin/fault"
 	xmlns:srv="http://gsos.com/dimiter_robin"
 	xmlns:val="http://gsos.com/dimiter_robin/validationrequest"
+	xmlns:vsp="http://gsos.com/dimiter_robin/validationresponse"
 	targetNamespace="http://gsos.com/dimiter_robin">
 	
 	<wsdl:types>
@@ -20,6 +21,8 @@
 				schemaLocation="ibanresponse.xsd"/>
 			<xsd:import namespace="http://gsos.com/dimiter_robin/fault"
 				schemaLocation="fault.xsd"/>
+			<xsd:import namespace="http://gsos.com/dimiter_robin/validationresponse"
+				schemaLocation="validationresponse.xsd"/>
 		</xsd:schema>
 	</wsdl:types>
 	
@@ -36,7 +39,7 @@
 	</wsdl:message>
 	
 	<wsdl:message name="validationresponse">
-		<wsdl:part name="validationresponse" element="xsd:boolean"/>
+		<wsdl:part name="validationresponse" element="vsp:validationresponse"/>
 	</wsdl:message>
 	
 	<wsdl:message name="validationrequest">
