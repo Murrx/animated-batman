@@ -4,7 +4,7 @@
 	targetNamespace="http://gsos.com/dimiter_robin/ibanresponse"
 	elementFormDefault="qualified">
 	
-	<element name="ibanresponse" type="tns:iban"/>
+	<element name="ibanresponse" type="tns:ibanResponse"/>
 
 	<!--
 		Een Nederlands IBAN-nummer van een betaalrekening heeft altijd 18 karakters, waarvan:
@@ -16,6 +16,12 @@
 			- 00 + Rekeningnummer van 7 cijfers of minder (aangevuld met voorloopnullen)
 		of:	- Rekeningnummer van 9 cijfers dat niet met 00 begint
 	-->
+	<complexType name="ibanResponse">
+		<sequence>
+			<element name="iban" type="tns:iban"></element>
+		</sequence>
+	</complexType>
+	
 	<simpleType name="iban">
 		<restriction base="string">
 			<length value="18"/>
