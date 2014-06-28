@@ -19,7 +19,10 @@ import com.gsos.dimiter_robin.ibanInterface.Validationrequest;
 public class IbanServiceImplementation implements IbanServiceInterface {
 	@WebMethod(operationName = "toIban")
 	@Override
-	public IbanResponse toIban(@WebParam(name="authentication")Authentication auth,@WebParam(name = "ibanrequest") Ibanrequest request) {
+	public IbanResponse toIban(@WebParam(name="authentication")Authentication auth,@WebParam(name = "ibanrequest") Ibanrequest request) 
+			throws Fault_Exception{
+		validateAuthentication(auth);
+		
 		String bankcode = request.getBankcode().value();
 		BigInteger rekeningnummer = request.getRekeningnummer();
 		System.out.println("New request with bankcode "+bankcode+" and number "+rekeningnummer);
@@ -52,8 +55,15 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 	@Override
 	public ValidationResponse validateIban(@WebParam(name="authentication")Authentication auth,@WebParam(name = "validationrequest") Validationrequest request)
 			throws Fault_Exception {
+		validateAuthentication(auth);
+		
 		ValidationResponse response = new ValidationResponse();
 		response.setResult(true);
 		return response;
+	}
+	
+	private void validateAuthentication(Authentication auth) throws Fault_Exception{
+		int postcodeNumbers = Integer.parseInt(auth.getPostcode().substring(0, 4));
+		if(postcodeNumbers < 8200 || postcodeNumbers > 8299) throw new Fault_Exception("Postcode invalid", null);
 	}
 }
