@@ -64,6 +64,6 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 	
 	private void validateAuthentication(Authentication auth) throws Fault_Exception{
 		int postcodeNumbers = Integer.parseInt(auth.getPostcode().substring(0, 4));
-		if(postcodeNumbers < 8200 || postcodeNumbers > 8299) throw new Fault_Exception("Postcode invalid", null);
+		if(postcodeNumbers < 8200 || postcodeNumbers > 8299) throw new Fault_Exception("Postcode not between 8200 and 8299", null);
 	}
 }
