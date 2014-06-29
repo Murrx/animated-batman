@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://resources.vpl.me/schemas/ibanservice/header"
+	targetNamespace="http://resources.vpl.me/schemas/ibanservice/header"
+	elementFormDefault="qualified">
+	<annotation>
+		<appinfo>IBAN WebService</appinfo>
+		<documentation xml:lang="nl">
+			Dit schema definieert de header van de webservice.
+		</documentation>
+	</annotation>
+	<simpleType name="postcodeType">
+		<annotation>
+			<documentation xml:lang="en">
+				Postcode moet overeenkomen met opgegeven regex.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern
+				value="[1-9][0-9]{3}[A-Z]{2}" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="huisnummerType">
+		<annotation>
+			<documentation xml:lang="en">
+				Huisnummer moet aan opdracht gespecificeerde regex voldoen.
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern
+				value="[1-9][0-9]{0,4}" />
+		</restriction>
+	</simpleType>
+
+
+	<element name="authentication">
+		<annotation>
+			<documentation xml:lang="nl">
+				Authenticatie voor de service
+			</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element name="bedrijfsnaam" type="string" />
+				<element name="postcode" type="tns:postcodeType" />
+				<element name="huisnummer" type="tns:huisnummerType" />
+			</sequence>
+		</complexType>
+	</element>
+</schema>

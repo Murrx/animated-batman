@@ -11,6 +11,7 @@
 	xmlns:srv="http://gsos.com/dimiter_robin"
 	xmlns:val="http://gsos.com/dimiter_robin/validationrequest"
 	xmlns:vsp="http://gsos.com/dimiter_robin/validationresponse"
+	xmlns:hdr="http://resources.vpl.me/schemas/ibanservice/header"
 	targetNamespace="http://gsos.com/dimiter_robin">
 	
 	<wsdl:types>
@@ -23,10 +24,15 @@
 				schemaLocation="fault.xsd"/>
 			<xsd:import namespace="http://gsos.com/dimiter_robin/validationresponse"
 				schemaLocation="validationresponse.xsd"/>
+			<xsd:import namespace="http://gsos.com/dimiter_robin/validationrequest"
+				schemaLocation="validationrequest.xsd"/>
+			<xsd:import namespace="http://resources.vpl.me/schemas/ibanservice/header"
+				schemaLocation="header.xsd"/>
 		</xsd:schema>
 	</wsdl:types>
 	
 	<wsdl:message name="ibanrequest">
+		<wsdl:part name="AuthHeader" element="hdr:authentication" />
 		<wsdl:part name="ibanrequest" element="req:ibanrequest"/>
 	</wsdl:message>
 	
@@ -43,10 +49,12 @@
 	</wsdl:message>
 	
 	<wsdl:message name="validationrequest">
-		<wsdl:part name="validationrequest" element="flt:fault"/>
+		<wsdl:part name="AuthHeader" element="hdr:authentication" />
+		<wsdl:part name="validationrequest" element="val:validationrequest"/>
 	</wsdl:message>	
 	
 	<wsdl:portType name="ibanServiceInterface">
+		
 		<wsdl:operation name="toIban">
 			<wsdl:input message="srv:ibanrequest"/>
 			<wsdl:output message="srv:ibanresponse"/>
@@ -58,6 +66,7 @@
 			<wsdl:output message="srv:validationresponse"/>
 			<wsdl:fault name="fault" message="srv:fault"/>
 		</wsdl:operation>
+		
 	</wsdl:portType>
 	
 	<wsdl:binding name="ibanServiceBinding" type="srv:ibanServiceInterface">
@@ -65,9 +74,12 @@
 		
 		<wsdl:operation name="toIban">
 			<soap:operation soapAction="" style="document"/>
+			
 			<wsdl:input>
-				<soap:body use="literal"/>
+				<soap:header message="srv:ibanrequest" part="AuthHeader" use="literal" />
+				<soap:body parts="ibanrequest" use="literal"/>
 			</wsdl:input>
+			
 			<wsdl:output>
 				<soap:body use="literal"/>
 			</wsdl:output>
@@ -79,7 +91,8 @@
 		<wsdl:operation name="validateIban">
 			<soap:operation soapAction="" style="document"/>
 			<wsdl:input>
-				<soap:body use="literal"/>
+				<soap:header message="srv:validationrequest" part="AuthHeader" use="literal" />
+				<soap:body use="literal" parts="validationrequest"/>
 			</wsdl:input>
 			<wsdl:output>
 				<soap:body use="literal"/>
