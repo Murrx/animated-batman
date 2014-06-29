@@ -22,15 +22,27 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 	public IbanResponse toIban(@WebParam(name="authentication")Authentication auth,@WebParam(name = "ibanrequest") Ibanrequest request) 
 			throws Fault_Exception{
 		validateAuthentication(auth);
+		final String countryCode = "NL";
+		final String bankCode = request.getBankcode().value();
+		final BigInteger accountNumber = request.getRekeningnummer();
+		System.out.println("New request with bank code " + bankCode + " and bank account number " + accountNumber);
 		
-		String bankcode = request.getBankcode().value();
-		BigInteger rekeningnummer = request.getRekeningnummer();
-		System.out.println("New request with bankcode "+bankcode+" and number "+rekeningnummer);
+		/*
+		System.out.println("Value of bank code "+bankCode+": " + valueFromLetters(bankCode));
+		System.out.println("Bank account number with leading zeroes: " + addZeroes(accountNumber));
+		System.out.println("Value of country code "+countryCode+": " + valueFromLetters(countryCode));
+		*/
 		
-		String partialCode = valueFromLetters(bankcode) + addZeroes(rekeningnummer) + valueFromLetters("NL") + "00";
+		String ibanCode = valueFromLetters(bankCode) + addZeroes(accountNumber) + valueFromLetters(countryCode) + "00";
+		//System.out.println("Numerical iban code: " + ibanCode);
+		
+		int controleGetal = 98 - (new BigInteger(ibanCode).mod(new BigInteger("97")).intValue());
+		//System.out.println("Controlegetal: " + controleGetal);
+
 		
 		IbanResponse response = new IbanResponse();
-		response.setIban("NL48INGB008829939");
+		response.setIban(countryCode + String.format("%02d", controleGetal) + bankCode + addZeroes(accountNumber) );
+		System.out.println("Generated IBAN: " + response.getIban());
 		return response;
 	}
 	
@@ -39,7 +51,7 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 		while (stringNummer.length() < 10) {
 			stringNummer = "0" + stringNummer; 
 		}
-		return new String();
+		return stringNummer;
 	}
 	
 	private String valueFromLetters (String letters) {
