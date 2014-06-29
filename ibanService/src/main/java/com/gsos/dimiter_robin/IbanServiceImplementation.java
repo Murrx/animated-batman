@@ -22,7 +22,7 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 		BigInteger rekeningnummer = request.getRekeningnummer();
 		System.out.println("New request with bankcode "+bankcode+" and number "+rekeningnummer);
 		
-		String partialCode = valueFromLetters(bankcode) + addZeroes(rekeningnummer) + valueFromLetters("NL");
+		String partialCode = valueFromLetters(bankcode) + addZeroes(rekeningnummer) + valueFromLetters("NL") + "00";
 		
 		IbanResponse response = new IbanResponse();
 		response.setIban("NL48INGB008829939");
