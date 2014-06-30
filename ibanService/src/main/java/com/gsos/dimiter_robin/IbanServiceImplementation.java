@@ -42,7 +42,7 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 		
 		IbanResponse response = new IbanResponse();
 		response.setIban(countryCode + String.format("%02d", controleGetal) + bankCode + addZeroes(accountNumber) );
-		System.out.println("Generated IBAN: " + response.getIban());
+		System.out.println("--> Generated IBAN: " + response.getIban() + "\n");
 		return response;
 	}
 	
@@ -62,6 +62,7 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 		return value;
 		
 	}
+	
 
 	@WebMethod(operationName = "validateIban")
 	@Override
@@ -69,8 +70,26 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 			throws Fault_Exception {
 		validateAuthentication(auth);
 		
+		final String iban = request.getIban();
+		int controleGetal = 0;
+		System.out.println("Validating IBAN " + iban);
+		
+		if (iban.matches("^NL[0-9]{2}[A-Z]{4}0(00[0-9]{6}[1-9]|[1-9]{2}[0-9]{7})$")) {
+			String tempCode = iban.substring(4) + iban.substring(0,4);
+				   tempCode = valueFromLetters(tempCode.substring(0,4)) + tempCode.substring(4);
+				   tempCode = tempCode.substring(0,18) + valueFromLetters(tempCode.substring(18,20)) + tempCode.substring(20,22);
+				   //System.out.println("Temporary code: " + tempCode);
+				   
+				   controleGetal = new BigInteger(tempCode).mod(new BigInteger("97")).intValue();
+				   //System.out.println("Controlegetal: " + controleGetal);
+			
+		} else {
+			throw new Fault_Exception("The supplied iban is not formatted correctly.", null);
+		}
+		
 		ValidationResponse response = new ValidationResponse();
-		response.setResult(true);
+		response.setResult( controleGetal == 1 ? true : false );
+		System.out.println("--> IBAN Valid: " + response.isResult() + "\n");
 		return response;
 	}
 	
