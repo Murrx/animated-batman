@@ -15,12 +15,12 @@ public class ClientBackend {
 		private static IbanServiceInterface serviceInterface;
 		private static Authentication auth;
 		
-		public static void main(String[] args) throws Exception {
-		
+		public ClientBackend() {
 			serviceInterface = new IbanService().getWSPort();
 			auth = new Authentication();
 			setAuth("test", "0000AA", "1");
 		}
+		
 		
 		public static void setAuth (String name, String postalCode, String number) {
 			auth.setBedrijfsnaam(name);
