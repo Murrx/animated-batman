@@ -55,7 +55,7 @@ public class ToIbanTest {
 	}
 	
 	//ongeldige bankcode
-	@Test(expected=Fault_Exception.class)
+	@Test(expected=IllegalArgumentException.class)
 	public void shouldThrowExceptionBecauseInvalidBankCode() throws Fault_Exception {
 		request.setBankcode(Bankcode.fromValue("ABCD"));
 		request.setRekeningnummer(new BigInteger("417164300"));
