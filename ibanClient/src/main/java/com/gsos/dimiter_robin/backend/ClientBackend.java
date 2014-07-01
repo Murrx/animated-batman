@@ -37,7 +37,7 @@ public class ClientBackend {
 		
 		public static boolean validateIban (String iban) throws Fault_Exception {
 			Validationrequest validationRequest = new Validationrequest();
-			validationRequest.setIban(iban);
+			validationRequest.setIban(iban.toUpperCase());
 			return serviceInterface.validateIban(auth, validationRequest).isResult();
 		}
 		
