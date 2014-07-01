@@ -1,18 +1,16 @@
 package com.gsos.dimiter_robin;
 
-import static org.junit.Assert.*;
-
 import java.math.BigInteger;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.gsos.dimiter_robin.ibanInterface.*;
+import com.gsos.dimiter_robin.ibanInterface.Authentication;
+import com.gsos.dimiter_robin.ibanInterface.Bankcode;
+import com.gsos.dimiter_robin.ibanInterface.Fault_Exception;
+import com.gsos.dimiter_robin.ibanInterface.Ibanrequest;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
+public class HeaderTest 
 {   
 	private static IbanServiceImplementation service;
 	private static Ibanrequest request;
