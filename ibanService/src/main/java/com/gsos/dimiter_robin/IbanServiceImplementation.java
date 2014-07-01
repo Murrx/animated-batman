@@ -7,7 +7,6 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import com.gsos.dimiter_robin.ibanInterface.Authentication;
-import com.gsos.dimiter_robin.ibanInterface.Fault;
 import com.gsos.dimiter_robin.ibanInterface.Fault_Exception;
 import com.gsos.dimiter_robin.ibanInterface.IbanResponse;
 import com.gsos.dimiter_robin.ibanInterface.IbanServiceInterface;
@@ -23,10 +22,13 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 			throws Fault_Exception{
 		validateAuthentication(auth);
 		final String countryCode = "NL";
-		final String bankCode = request.getBankcode().value();
+		final String bankCode = request.getBankcode().value().toUpperCase();
 		final BigInteger accountNumber = request.getRekeningnummer();
 		System.out.println("New request with bank code " + bankCode + " and bank account number " + accountNumber);
 		
+		if (!accountNumber.toString().matches("^([1-9][0-9]{8}|[1-9][0-9]{0,6})$")){
+			throw new Fault_Exception("invalid accountnumber", null);
+		}
 		/*
 		System.out.println("Value of bank code "+bankCode+": " + valueFromLetters(bankCode));
 		System.out.println("Bank account number with leading zeroes: " + addZeroes(accountNumber));
@@ -70,7 +72,7 @@ public class IbanServiceImplementation implements IbanServiceInterface {
 			throws Fault_Exception {
 		validateAuthentication(auth);
 		
-		final String iban = request.getIban();
+		final String iban = request.getIban().replaceAll("\\s+", "");
 		int controleGetal = 0;
 		System.out.println("Validating IBAN " + iban);
 		

@@ -61,13 +61,5 @@ public class ToIbanTest {
 		request.setRekeningnummer(new BigInteger("417164300"));
 		service.toIban(auth, request);
 	}
-	
-	//bankcode kleine letters
-	/*@Test
-	public void shouldNotThrowExceptionBecauseOfLowerCase() throws Fault_Exception {
-		request.setBankcode(Bankcode.fromValue("abna"));
-		request.setRekeningnummer(new BigInteger("417164300"));
-		service.toIban(auth, request);
-	}*/
 }
 
